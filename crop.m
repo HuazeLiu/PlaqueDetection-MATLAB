@@ -1,4 +1,4 @@
-sccale = 0.9;
+scale = 0.9;
 figure(1)
 originalImage = imread('circle.png');
 imshow(originalImage);
@@ -29,6 +29,8 @@ figure(2)
 props = regionprops(mask, 'BoundingBox');
 maskedImage = imcrop(maskedImage, props.BoundingBox);
 imshow(maskedImage, []);
+figure(3)
+scaledPlaques = singleWellDetection(maskedImage)
 
 % scaling
-%totalNumOfCurcles = numOfcircles * normalRadius^2 / radius^2
+totalNumOfCurcles = scaledPlaques * normalRadius^2 / radius^2
