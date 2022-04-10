@@ -1,4 +1,6 @@
-scale = 0.9;
+offset = 1; % mm
+wellSize = 15.6; %diameter in mm
+scale = 1-offset/(15.6/2);
 figure(1)
 originalImage = imread('circle.png');
 imshow(originalImage);
