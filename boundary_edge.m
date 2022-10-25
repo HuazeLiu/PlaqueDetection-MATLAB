@@ -18,4 +18,5 @@ hold on
 y = size(B);
 title("Number of plaques detected: " + y(1));
 
+% find the boundary edge
 
