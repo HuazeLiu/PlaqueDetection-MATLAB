@@ -26,6 +26,24 @@ end
 imshow(plate)
 h = viscircles(centers,radii);
 
+
+I = imread('IMG_0902.jpg');
+for column = 1: plate_type
+    figure(column)
+    imageSize = size(I);
+    ci = [centers(column,2), centers(column,1), radii(column)];% center and radius of circle ([c_row, c_col, r])
+    [xx,yy] = ndgrid((1:imageSize(1))-ci(1),(1:imageSize(2))-ci(2));
+    mask = uint8((xx.^2 + yy.^2)<ci(3)^2);
+    croppedImage = uint8(zeros(size(I)));
+    croppedImage(:,:,1) = I(:,:,1).*mask;
+    croppedImage(:,:,2) = I(:,:,2).*mask;
+    croppedImage(:,:,3) = I(:,:,3).*mask;
+    I1 = croppedImage;
+    I2 = imcrop(I1,[ci(2)-ci(3), ci(1)-ci(3), 2*ci(3), 2*ci(3)]);
+    imshow(I2);
+    singleWellDetection(I2)
+end
+
 % ROUND 2
 % radii_data = rmoutliers(radii);
 % average_radii = mean(radii_data);
