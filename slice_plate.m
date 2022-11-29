@@ -40,8 +40,9 @@ for column = 1: plate_type
     croppedImage(:,:,3) = I(:,:,3).*mask;
     I1 = croppedImage;
     I2 = imcrop(I1,[ci(2)-ci(3), ci(1)-ci(3), 2*ci(3), 2*ci(3)]);
-    imshow(I2);
-    singleWellDetection(I2)
+    I3 = crop_function(I2);
+    imshow(I3)
+    % singleWellDetection(I2)
 end
 
 % ROUND 2
