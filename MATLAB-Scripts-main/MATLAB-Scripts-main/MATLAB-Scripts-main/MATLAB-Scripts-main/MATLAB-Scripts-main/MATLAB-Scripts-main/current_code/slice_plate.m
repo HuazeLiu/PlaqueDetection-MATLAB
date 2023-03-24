@@ -1,9 +1,6 @@
 clear all
 close all
 
-%input: well plate
-%output: single well w/ plaque count (current: outputs all wells)
-
 plate_type = 12;
 
 plate = imread('IMG_0902.jpg');
@@ -32,10 +29,9 @@ h = viscircles(centers,radii);
 
 I = imread('IMG_0902.jpg');
 for column = 1: plate_type
-    % crops each well in plate (eg 3x4 well plate: 12 wells cropped)
     figure(column)
     imageSize = size(I);
-    ci = [centers(column,2), centers(column,1), radii(column)]; % center and radius of circle ([c_row, c_col, r])
+    ci = [centers(column,2), centers(column,1), radii(column)];% center and radius of circle ([c_row, c_col, r])
     [xx,yy] = ndgrid((1:imageSize(1))-ci(1),(1:imageSize(2))-ci(2));
     mask = uint8((xx.^2 + yy.^2)<ci(3)^2);
     croppedImage = uint8(zeros(size(I)));
@@ -44,10 +40,9 @@ for column = 1: plate_type
     croppedImage(:,:,3) = I(:,:,3).*mask;
     I1 = croppedImage;
     I2 = imcrop(I1,[ci(2)-ci(3), ci(1)-ci(3), 2*ci(3), 2*ci(3)]);
-
     I3 = crop_function(I2);
     imshow(I3)
-    
+    % singleWellDetection(I2)
 end
 
 % ROUND 2

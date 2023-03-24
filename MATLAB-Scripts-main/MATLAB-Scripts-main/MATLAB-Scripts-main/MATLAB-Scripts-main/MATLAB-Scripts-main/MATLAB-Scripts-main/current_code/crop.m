@@ -1,19 +1,16 @@
-%input: single well image
-%intermediate: crops out well border then singleWellDetection
-%output: plaque count & figure
-function [outputImage] = crop_function(inputImage)
 offset = 1; % mm
 wellSize = 15.6; %diameter in mm
 scale = 1-offset/(15.6/2);
-% figure(1)
-originalImage = inputImage;
-% imshow(originalImage);
+figure(1)
+originalImage = imread('circle.png');
+imshow(originalImage);
 [rows, columns, numberOfColorChannels] = size(originalImage);
 %center = [rows/2; columns/2];
 %radius = [rows/2];
 normalRadius = [rows/2];
 center = [rows/2; columns/2];
 radius = [rows/2*scale];
+
 
 % coordinates of a circle
 angles = linspace(0, 2*pi, 10000);
@@ -31,13 +28,12 @@ else
 	maskedImage = bsxfun(@times, originalImage, cast(mask, class(originalImage)));
 end
 % Crop the image to the bounding box.
-% figure(2)
+figure(2)
 props = regionprops(mask, 'BoundingBox');
 maskedImage = imcrop(maskedImage, props.BoundingBox);
-% imshow(maskedImage, []);
-% figure(3)
-outputImage = singleWellDetection(maskedImage)
+imshow(maskedImage, []);
+figure(3)
+scaledPlaques = singleWellDetection(maskedImage)
 
 % scaling
-totalNumOfCurcles = outputImage * normalRadius^2 / radius^2
-end
+totalNumOfCurcles = scaledPlaques * normalRadius^2 / radius^2

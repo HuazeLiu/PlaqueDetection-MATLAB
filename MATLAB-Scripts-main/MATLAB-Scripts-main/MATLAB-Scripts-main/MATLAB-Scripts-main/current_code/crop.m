@@ -1,3 +1,6 @@
+% code will use crop_function instead
+% testing for crop_function
+
 offset = 1; % mm
 wellSize = 15.6; %diameter in mm
 scale = 1-offset/(15.6/2);
@@ -10,7 +13,6 @@ imshow(originalImage);
 normalRadius = [rows/2];
 center = [rows/2; columns/2];
 radius = [rows/2*scale];
-
 
 % coordinates of a circle
 angles = linspace(0, 2*pi, 10000);

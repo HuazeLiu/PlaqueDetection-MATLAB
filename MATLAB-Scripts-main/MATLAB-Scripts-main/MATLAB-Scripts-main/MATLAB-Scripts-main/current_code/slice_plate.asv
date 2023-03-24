@@ -1,9 +1,6 @@
 clear all
 close all
 
-%input: well plate
-%output: single well w/ plaque count (current: outputs all wells)
-
 plate_type = 12;
 
 plate = imread('IMG_0902.jpg');
@@ -44,10 +41,9 @@ for column = 1: plate_type
     croppedImage(:,:,3) = I(:,:,3).*mask;
     I1 = croppedImage;
     I2 = imcrop(I1,[ci(2)-ci(3), ci(1)-ci(3), 2*ci(3), 2*ci(3)]);
-
     I3 = crop_function(I2);
     imshow(I3)
-    
+    % singleWellDetection(I2)
 end
 
 % ROUND 2

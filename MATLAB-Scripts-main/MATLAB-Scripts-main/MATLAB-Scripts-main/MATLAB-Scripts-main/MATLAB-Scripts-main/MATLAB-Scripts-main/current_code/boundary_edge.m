@@ -1,8 +1,5 @@
-% code will use singleWellDetection instead
-% testing for singleWellDetection
-
 clear all
-testimage = imread('circle.png');
+testimage = imread('trial.png');
 grayscaleimage = rgb2gray(testimage);
 BW = imbinarize(grayscaleimage,0.67); %0 black, 1 white
 BW = bwareaopen(BW,30);

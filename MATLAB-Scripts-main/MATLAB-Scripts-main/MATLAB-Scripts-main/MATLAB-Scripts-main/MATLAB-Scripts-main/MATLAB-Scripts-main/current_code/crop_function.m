@@ -1,6 +1,3 @@
-%input: single well image
-%intermediate: crops out well border then singleWellDetection
-%output: plaque count & figure
 function [outputImage] = crop_function(inputImage)
 offset = 1; % mm
 wellSize = 15.6; %diameter in mm

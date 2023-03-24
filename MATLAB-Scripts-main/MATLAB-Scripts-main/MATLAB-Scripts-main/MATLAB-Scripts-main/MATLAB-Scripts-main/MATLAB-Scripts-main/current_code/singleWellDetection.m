@@ -1,5 +1,5 @@
-%input: single well
-%output: plaque count
+%
+%
 
 function [finalCount] = singleWellDetection(inputImage)
 % grayscaleimage = rgb2gray(inputImage);
@@ -9,17 +9,10 @@ function [finalCount] = singleWellDetection(inputImage)
 % 
 % imshow(BW);
 gray_image = rgb2gray(inputImage);
-figure(1)
-imshow(gray_image)
-% explore other background elimination techniques
-se = strel('disk', 15)
+se = strel('disk', 18)
 background = imopen(gray_image,se);
-figure(2)
 imshow(background)
-
 Image_plaque = gray_image - background;
-figure(3)
-
 imshow(Image_plaque)
 Image_contrast = imadjust(Image_plaque);
 imshow(Image_contrast)
