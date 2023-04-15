@@ -33,7 +33,7 @@ imshow(Image_plaque)
 
 Image_contrast = imadjust(Image_plaque);
 imshow(Image_contrast)
-bw = imbinarize(Image_contrast,0.6);  
+bw = imbinarize(Image_contrast,0.6);  % We make some change here, right?
 bw = bwareaopen(bw,50);
 imshow(bw)
 
