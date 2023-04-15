@@ -1,7 +1,7 @@
 clear all
 close all
 
-%input: well plate
+%input: well plate size
 %output: single well w/ plaque count (current: outputs all wells)
 
 plate_type = 12;
