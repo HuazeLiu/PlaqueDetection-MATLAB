@@ -50,6 +50,7 @@ for column = 1: plate_type
     
 end
 
+
 % ROUND 2
 % radii_data = rmoutliers(radii);
 % average_radii = mean(radii_data);
